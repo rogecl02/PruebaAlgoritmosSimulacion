@@ -14,6 +14,7 @@ namespace PruebaAlgoritmosSimulacion.Clases
         public double Distancia { get; set; }
         public double Competitividad  { get; set; }
         public Arco() { 
+
         }
         // Se define el constructor
         public Arco(Arco arco)
