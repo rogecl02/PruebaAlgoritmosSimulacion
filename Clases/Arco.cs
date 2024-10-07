@@ -15,6 +15,7 @@ namespace PruebaAlgoritmosSimulacion.Clases
         public double Competitividad  { get; set; }
         public Arco() { 
         }
+        // Constructor
         public Arco(Arco arco)
         {
             IdPuntoOrigen = arco.IdPuntoOrigen;
