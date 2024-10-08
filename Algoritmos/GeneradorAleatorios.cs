@@ -17,8 +17,8 @@ namespace PruebaAlgoritmosSimulacion.Algoritmos
                 Random aleatorio =new Random();
                 Asignacion generador = new Asignacion();
                
-                generador.Latitud = aleatorio.Next(limiteSuperior);
-                generador.Longitud = aleatorio.Next(limiteSuperior);
+                generador.Latitud = aleatorio.Next(limiteInferior,limiteSuperior);
+                generador.Longitud = aleatorio.Next(limiteInferior,limiteSuperior);
                 generador.IdPunto = i;
                 generador.Especie = i.ToString();
                 generador.Activo = false;
