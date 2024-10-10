@@ -37,6 +37,7 @@
             Maximo = new Label();
             textBox3 = new TextBox();
             label3 = new Label();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -120,11 +121,23 @@
             label3.Text = "Minimo";
             label3.Click += label3_Click_1;
             // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.Info;
+            button2.Location = new Point(395, 474);
+            button2.Name = "button2";
+            button2.Size = new Size(114, 30);
+            button2.TabIndex = 10;
+            button2.Text = "Descargar";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1115, 551);
+            Controls.Add(button2);
             Controls.Add(label3);
             Controls.Add(textBox3);
             Controls.Add(Maximo);
@@ -152,5 +165,6 @@
         private Label Maximo;
         private TextBox textBox3;
         private Label label3;
+        private Button button2;
     }
 }

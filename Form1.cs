@@ -2,6 +2,7 @@ using PruebaAlgoritmosSimulacion.Algoritmos;
 using PruebaAlgoritmosSimulacion.Clases;
 using System.Reflection.Metadata.Ecma335;
 
+
 namespace PruebaAlgoritmosSimulacion
 {
     public partial class Form1 : Form
@@ -25,7 +26,7 @@ namespace PruebaAlgoritmosSimulacion
             int minimo = Convert.ToInt32(textBox3.Text);
             //Paso2: llamar a Algoritmo
             GeneradorAleatorios generador = new GeneradorAleatorios();
-            List<Asignacion> listaSalida = generador.CrearListaOrigen(puntosTotales,minimo , maximo);
+            List<Asignacion> listaSalida = generador.CrearListaOrigen(puntosTotales, minimo, maximo);
             llenarGrid(listaSalida);
         }
 
@@ -63,7 +64,30 @@ namespace PruebaAlgoritmosSimulacion
             }
 
         }
+        public void DescargaExcel(DataGridView data)
+        {
+            Microsoft.Office.Interop.Excel.Application exportarExcel = new Microsoft.Office.Interop.Excel.Application();
+            exportarExcel.Application.Workbooks.Add(true);
+            int indiceColumna = 0;
+            foreach (DataGridViewColumn columna in data.Columns)
+            {
+                indiceColumna++;
+                exportarExcel.Cells[1, indiceColumna] = columna.HeaderText;
+            }
+            int indiceFilas = 0;
 
+            foreach (DataGridViewRow fila in data.Rows)
+            {
+                indiceFilas++;
+                indiceColumna = 0;
+                foreach (DataGridViewColumn columna in data.Columns)
+                {
+                    indiceColumna++;
+                    exportarExcel.Cells[indiceFilas + 1, indiceColumna] = fila.Cells[columna.Name].Value;
+                }
+            }
+            exportarExcel.Visible = true;
+        }
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -72,6 +96,11 @@ namespace PruebaAlgoritmosSimulacion
         private void label3_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DescargaExcel(dataGridView1);
         }
     }
 }
