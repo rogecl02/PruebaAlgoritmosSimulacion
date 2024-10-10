@@ -14,20 +14,14 @@ namespace PruebaAlgoritmosSimulacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Equals("") ||
-                textBox2.Text.Equals("") ||
-                textBox3.Text.Equals(""))
-            {
-                MessageBox.Show("Los números tienen que ser Mayor que cero, NO VACÍOS");
-                return;
-            }
-            int puntosTotales = Convert.ToInt32(textBox1.Text);
-            int maximo = Convert.ToInt32(textBox2.Text);
-            int minimo = Convert.ToInt32(textBox3.Text);
+            (int X_1,int a,int b,int c, int m)=validaciones(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
             //Paso2: llamar a Algoritmo
             GeneradorAleatorios generador = new GeneradorAleatorios();
-            List<Asignacion> listaSalida = generador.CrearListaOrigen(puntosTotales, minimo, maximo);
-            llenarGrid(listaSalida);
+            
+            List<int> listaleatoria = new List<int>();
+
+            List<int> lista = generador.CrearListaOrigen(listaleatoria, X_1, a, b, c, m);
+            llenarGrid(lista,X_1);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -44,22 +38,25 @@ namespace PruebaAlgoritmosSimulacion
         {
 
         }
-        public void llenarGrid(List<Asignacion> lista)
+        public void llenarGrid(List<int> lista,int X_1)
         {
             string numeroColumna1 = "1";
             string numeroColumna2 = "2";
-            string numeroColumna3 = "3";
+            
 
             dataGridView1.Columns.Clear();
-            dataGridView1.Columns.Add(numeroColumna1, "Id");
-            dataGridView1.Columns.Add(numeroColumna2, "Latitud");
-            dataGridView1.Columns.Add(numeroColumna3, "Longitud");
-            for (int i = 0; i < lista.Count; i++)
+            dataGridView1.Columns.Add(numeroColumna1, "id");
+            dataGridView1.Columns.Add(numeroColumna2, "XN");
+
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows[0].Cells[Int32.Parse(numeroColumna1) - 1].Value = "X_1";
+            dataGridView1.Rows[0].Cells[Int32.Parse(numeroColumna2) - 1].Value = (X_1).ToString();
+            for (int i = 1; i < lista.Count+1; i++)
             {
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = (lista[i].IdPunto).ToString();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna2) - 1].Value = lista[i].Latitud.ToString();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna3) - 1].Value = lista[i].Longitud.ToString();
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = "X_"+(i+1).ToString();
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna2) - 1].Value = (lista[i-1]).ToString();
+                
 
             }
 
@@ -97,7 +94,27 @@ namespace PruebaAlgoritmosSimulacion
         {
 
         }
-
+        public (int X_1, int a, int b,int c, int d) validaciones(string a, string b, string c,string d, string e)
+        {
+            if (string.IsNullOrEmpty(a) || string.IsNullOrEmpty(b) || string.IsNullOrEmpty(c) || string.IsNullOrEmpty(d) || string.IsNullOrEmpty(e))
+            {
+                MessageBox.Show("Los números tienen que ser Mayor que cero, NO VACÍOS");
+                return (0,0,0,0,0);
+            }
+            int X_1 = Convert.ToInt32(a);
+            int a_1 = Convert.ToInt32(b);
+            int b_1 = Convert.ToInt32(c);
+            int c_1 = Convert.ToInt32(d);
+            int d_1 = Convert.ToInt32(e);
+            if (
+                X_1 <=0||a_1<=0|| b_1 <= 0 || c_1 <= 0|| d_1 <= 0 )
+     
+            {
+                MessageBox.Show("Los números tienen que ser Mayor que cero, NO VACÍOS");
+                return (0,0,0,0,0);
+            }
+            return (X_1, a_1, b_1,c_1,d_1);
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             DescargaExcel(dataGridView1);

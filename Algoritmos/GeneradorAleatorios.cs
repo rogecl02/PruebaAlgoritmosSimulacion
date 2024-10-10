@@ -9,22 +9,15 @@ namespace PruebaAlgoritmosSimulacion.Algoritmos
 {
     public class GeneradorAleatorios
     {
-        public List<Asignacion> CrearListaOrigen(int puntosTotales,int limiteInferior, int limiteSuperior)
-        { 
-            List<Asignacion> listaAsignacion = new List<Asignacion>();
-            for (int i =0; i < puntosTotales; i++)
+        public List<int> CrearListaOrigen(List<int> listaaleatoria, int a, int b, int c, int x, int m)
+        {
+            int nuevo_x = (a * x * x + b * x + c) % m;
+            if (!listaaleatoria.Contains(nuevo_x))
             {
-                Random aleatorio =new Random();
-                Asignacion generador = new Asignacion();
-               
-                generador.Latitud = aleatorio.Next(limiteInferior,limiteSuperior);
-                generador.Longitud = aleatorio.Next(limiteInferior,limiteSuperior);
-                generador.IdPunto = i;
-                generador.Especie = i.ToString();
-                generador.Activo = false;
-                listaAsignacion.Add(generador);
+                listaaleatoria.Add(nuevo_x);
+                return CrearListaOrigen(listaaleatoria, a, b, c, nuevo_x, m);
             }
-            return listaAsignacion;
+            return listaaleatoria;
         }
 
     }
