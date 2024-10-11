@@ -19,9 +19,11 @@ namespace PruebaAlgoritmosSimulacion
             GeneradorAleatorios generador = new GeneradorAleatorios();
             
             List<int> listaleatoria = new List<int>();
-
-            List<int> lista = generador.CrearListaOrigen(listaleatoria, X_1, a, b, c, m);
-            llenarGrid(lista,X_1);
+            if ((X_1, a, b, c, m) != (0, 0, 0, 0, 0))
+            {
+                List<int> lista = generador.CrearListaOrigen(listaleatoria, X_1, a, b, c, m);
+                llenarGrid(lista, X_1);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -113,7 +115,34 @@ namespace PruebaAlgoritmosSimulacion
                 MessageBox.Show("Los números tienen que ser Mayor que cero, NO VACÍOS");
                 return (0,0,0,0,0);
             }
+            if (
+                a_1 >= d_1 || b_1 >= d_1 || c_1 >= d_1)
+
+            {
+                MessageBox.Show("a,b y c no pueden ser mayores a m");
+                return (0, 0, 0, 0, 0);
+            }
+            if (!EsPrimo(X_1))
+            {
+                MessageBox.Show("X_1 debe ser primo");
+                return (0, 0, 0, 0, 0);
+            }
             return (X_1, a_1, b_1,c_1,d_1);
+        }
+        public bool EsPrimo(int numero)
+        {
+            if (numero <= 1)
+            {
+                return false;
+            }
+            for (int i = 2; i <= Math.Sqrt(numero); i++)
+            {
+                if (numero % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         private void button2_Click(object sender, EventArgs e)
         {
