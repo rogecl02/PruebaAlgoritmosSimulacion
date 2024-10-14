@@ -17,6 +17,7 @@ namespace PruebaAlgoritmosSimulacion.Algoritmos
                 listaaleatoria.Add(nuevo_x);
                 return CrearListaOrigen(listaaleatoria, a, b, c, nuevo_x, m);
             }
+            listaaleatoria.Add(nuevo_x);
             return listaaleatoria;
         }
 
