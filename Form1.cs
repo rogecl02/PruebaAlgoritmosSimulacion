@@ -21,8 +21,9 @@ namespace PruebaAlgoritmosSimulacion
             List<int> listaleatoria = new List<int>();
             if ((X_1, a, b, c, m) != (0, 0, 0, 0, 0))
             {
-                List<int> lista = generador.CrearListaOrigen(listaleatoria, X_1, a, b, c, m);
-                llenarGrid(lista, X_1);
+                (List<List<float>> matrizResultados, float media) resultado = generador.MonteCarloSimulation(a, b, m, c);
+                MessageBox.Show(resultado.media.ToString());
+                llenarGrid(resultado.matrizResultados, X_1);
             }
         }
 
@@ -40,25 +41,36 @@ namespace PruebaAlgoritmosSimulacion
         {
 
         }
-        public void llenarGrid(List<int> lista,int X_1)
+        public void llenarGrid(List<List<float>> lista,int X_1)
         {
             string numeroColumna1 = "1";
             string numeroColumna2 = "2";
-            
+            string numeroColumna3 = "3";
+            string numeroColumna4 = "4";
+            string numeroColumna5 = "5";
+            string numeroColumna6 = "6";
+
+
 
             dataGridView1.Columns.Clear();
-            dataGridView1.Columns.Add(numeroColumna1, "id");
-            dataGridView1.Columns.Add(numeroColumna2, "XN");
+            dataGridView1.Columns.Add(numeroColumna1, "iteración");
+            dataGridView1.Columns.Add(numeroColumna2, "Panel 1 ");
+            dataGridView1.Columns.Add(numeroColumna3, "Panel 2 ");
+            dataGridView1.Columns.Add(numeroColumna4, "Panel 3 ");
+            dataGridView1.Columns.Add(numeroColumna5, "Panel 4 ");
+            dataGridView1.Columns.Add(numeroColumna6, "Panel 5 ");
 
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[0].Cells[Int32.Parse(numeroColumna1) - 1].Value = "X_1";
-            dataGridView1.Rows[0].Cells[Int32.Parse(numeroColumna2) - 1].Value = (X_1).ToString();
+            
             for (int i = 1; i < lista.Count+1; i++)
             {
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = "X_"+(i+1).ToString();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna2) - 1].Value = (lista[i-1]).ToString();
-                
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = (i).ToString();
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna2) - 1].Value = (lista[i - 1][1]).ToString();
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna3) - 1].Value = (lista[i - 1][2]).ToString();
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna4) - 1].Value = (lista[i - 1][3]).ToString();
+                //dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna5) - 1].Value = (lista[i - 1][4]).ToString();
+                //dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna6) - 1].Value = (lista[i - 1][5]).ToString();
+
 
             }
 
@@ -115,18 +127,8 @@ namespace PruebaAlgoritmosSimulacion
                 MessageBox.Show("Los números tienen que ser Mayor que cero, NO VACÍOS");
                 return (0,0,0,0,0);
             }
-            if (
-                a_1 >= d_1 || b_1 >= d_1 || c_1 >= d_1)
-
-            {
-                MessageBox.Show("a,b y c no pueden ser mayores a m");
-                return (0, 0, 0, 0, 0);
-            }
-            if (!EsPrimo(X_1))
-            {
-                MessageBox.Show("X_1 debe ser primo");
-                return (0, 0, 0, 0, 0);
-            }
+            
+           
             return (X_1, a_1, b_1,c_1,d_1);
         }
         public bool EsPrimo(int numero)

@@ -9,15 +9,34 @@ namespace PruebaAlgoritmosSimulacion.Algoritmos
 {
     public class GeneradorAleatorios
     {
-        public List<int> CrearListaOrigen(List<int> listaaleatoria, int a, int b, int c, int x, int m)
+        public (List<List<float>> matriz, float media) MonteCarloSimulation(int rangomin, int rangomax, int iteraciones, int tmuestra)
         {
-            int nuevo_x = (a * x * x + b * x + c) % m;
-            if (!listaaleatoria.Contains(nuevo_x))
+            List<List<float>> matrizResultados = new List<List<float>>(); // Lista que contiene todas las muestras
+
+            float media = 0; // Initialization
+            Random r = new Random(); // Create the random object once
+
+            for (int i = 0; i < iteraciones; i++)
             {
-                listaaleatoria.Add(nuevo_x);
-                return CrearListaOrigen(listaaleatoria, a, b, c, nuevo_x, m);
+                List<float> muestra = new List<float>();
+
+                for (int j = 0; j < tmuestra; j++)
+                {
+                    // Generate random numbers within range
+                    int rInt = r.Next(rangomin, rangomax);
+                    muestra.Add(rInt);
+                }
+
+                float avg = muestra.Average();
+                float varianza = (float)Math.Sqrt(muestra.Average(v => Math.Pow(v - avg, 2)));
+
+                muestra.Remove(muestra.Max()); // Remove the max value
+                media += muestra.Max(); // Add the new max value
+                matrizResultados.Add(new List<float>(muestra)); // Agregar la muestra a la matriz
+
             }
-            return listaaleatoria;
+            media = media / iteraciones; // Calculate the final average
+            return (matrizResultados, media);
         }
 
     }
