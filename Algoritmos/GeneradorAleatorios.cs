@@ -29,12 +29,13 @@ namespace PruebaAlgoritmosSimulacion.Algoritmos
 
                 float avg = muestra.Average();
                 float varianza = (float)Math.Sqrt(muestra.Average(v => Math.Pow(v - avg, 2)));
-
+                matrizResultados.Add(new List<float>(muestra));
                 muestra.Remove(muestra.Max()); // Remove the max value
                 media += muestra.Max(); // Add the new max value
-                matrizResultados.Add(new List<float>(muestra)); // Agregar la muestra a la matriz
-
+                //matrizResultados.Add(new List<float>(muestra)); // Agregar la muestra a la matriz
+                
             }
+            // Agregar la muestra a la matriz
             media = media / iteraciones; // Calculate the final average
             return (matrizResultados, media);
         }

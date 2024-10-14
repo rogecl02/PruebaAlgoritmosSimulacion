@@ -41,40 +41,41 @@ namespace PruebaAlgoritmosSimulacion
         {
 
         }
-        public void llenarGrid(List<List<float>> lista,int X_1)
+        public void llenarGrid(List<List<float>> lista, int X_1)
         {
-            string numeroColumna1 = "1";
-            string numeroColumna2 = "2";
-            string numeroColumna3 = "3";
-            string numeroColumna4 = "4";
-            string numeroColumna5 = "5";
-            string numeroColumna6 = "6";
+            // Column names
+            MessageBox.Show(lista.Count.ToString());
+            string[] columnNames = { "1", "2", "3", "4", "5", "6" };
 
-
-
+            // Clear existing columns and add new ones
             dataGridView1.Columns.Clear();
-            dataGridView1.Columns.Add(numeroColumna1, "iteración");
-            dataGridView1.Columns.Add(numeroColumna2, "Panel 1 ");
-            dataGridView1.Columns.Add(numeroColumna3, "Panel 2 ");
-            dataGridView1.Columns.Add(numeroColumna4, "Panel 3 ");
-            dataGridView1.Columns.Add(numeroColumna5, "Panel 4 ");
-            dataGridView1.Columns.Add(numeroColumna6, "Panel 5 ");
+            dataGridView1.Columns.Add(columnNames[0], "Iteración");
+            dataGridView1.Columns.Add(columnNames[1], "Panel 1");
+            dataGridView1.Columns.Add(columnNames[2], "Panel 2");
+            dataGridView1.Columns.Add(columnNames[3], "Panel 3");
+            dataGridView1.Columns.Add(columnNames[4], "Panel 4");
+            dataGridView1.Columns.Add(columnNames[5], "Panel 5");
 
-            
-            for (int i = 1; i < lista.Count+1; i++)
+            // Populate rows
+            for (int i = 0; i < lista.Count; i++)
             {
-                dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = (i).ToString();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna2) - 1].Value = (lista[i - 1][1]).ToString();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna3) - 1].Value = (lista[i - 1][2]).ToString();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna4) - 1].Value = (lista[i - 1][3]).ToString();
-                //dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna5) - 1].Value = (lista[i - 1][4]).ToString();
-                //dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna6) - 1].Value = (lista[i - 1][5]).ToString();
+                // Add a new row and get the index of the added row
+                int rowIndex = dataGridView1.Rows.Add();
 
+                // Set cell values for the added row
+                dataGridView1.Rows[rowIndex].Cells[0].Value = (i + 1).ToString(); // Iteration number
 
+                for (int j = 0; j < lista[i].Count && j <= 5; j++)
+                {
+                    dataGridView1.Rows[rowIndex].Cells[j + 1].Value = lista[i][j].ToString(); // Panels 1 to 5
+                }
             }
-
         }
+
+
+
+
+
         public void DescargaExcel(DataGridView data)
         {
             Microsoft.Office.Interop.Excel.Application exportarExcel = new Microsoft.Office.Interop.Excel.Application();
