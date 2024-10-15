@@ -58,19 +58,19 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(223, 72);
+            textBox1.Location = new Point(449, 220);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 1;
+            textBox1.Text = "2";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(91, 79);
             label1.Name = "label1";
-            label1.Size = new Size(73, 20);
+            label1.Size = new Size(0, 20);
             label1.TabIndex = 2;
-            label1.Text = "Seed (x_i)";
             label1.Click += label1_Click;
             // 
             // label2
@@ -82,7 +82,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(557, 72);
+            textBox2.Location = new Point(223, 76);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 3;
@@ -101,11 +101,11 @@
             // Maximo
             // 
             Maximo.AutoSize = true;
-            Maximo.Location = new Point(449, 76);
+            Maximo.Location = new Point(115, 80);
             Maximo.Name = "Maximo";
-            Maximo.Size = new Size(17, 20);
+            Maximo.Size = new Size(60, 20);
             Maximo.TabIndex = 7;
-            Maximo.Text = "a";
+            Maximo.Text = "Minimo";
             Maximo.Click += label3_Click;
             // 
             // textBox3
@@ -120,9 +120,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(115, 116);
             label3.Name = "label3";
-            label3.Size = new Size(18, 20);
+            label3.Size = new Size(63, 20);
             label3.TabIndex = 9;
-            label3.Text = "b";
+            label3.Text = "Maximo";
             label3.Click += label3_Click_1;
             // 
             // button2
@@ -138,14 +138,14 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(557, 109);
+            textBox4.Location = new Point(557, 113);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(125, 27);
             textBox4.TabIndex = 11;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(786, 109);
+            textBox5.Location = new Point(557, 72);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(125, 27);
             textBox5.TabIndex = 12;
@@ -153,20 +153,21 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(449, 116);
+            label4.Location = new Point(433, 116);
             label4.Name = "label4";
-            label4.Size = new Size(16, 20);
+            label4.Size = new Size(118, 20);
             label4.TabIndex = 13;
-            label4.Text = "c";
+            label4.Text = "Tamaño muestra";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(745, 116);
+            label5.Location = new Point(470, 75);
             label5.Name = "label5";
-            label5.Size = new Size(22, 20);
+            label5.Size = new Size(81, 20);
             label5.TabIndex = 14;
-            label5.Text = "m";
+            label5.Text = "Iteraciones";
+            label5.Click += label5_Click;
             // 
             // Form1
             // 

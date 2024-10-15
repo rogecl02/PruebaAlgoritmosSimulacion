@@ -14,15 +14,15 @@ namespace PruebaAlgoritmosSimulacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            (int X_1,int a,int b,int c, int m)=validaciones(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
+            (int X_1, int a, int b, int c, int m) = validaciones(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
             //Paso2: llamar a Algoritmo
             GeneradorAleatorios generador = new GeneradorAleatorios();
-            
+
             List<int> listaleatoria = new List<int>();
             if ((X_1, a, b, c, m) != (0, 0, 0, 0, 0))
             {
                 (List<List<float>> matrizResultados, float media) resultado = generador.MonteCarloSimulation(a, b, m, c);
-                MessageBox.Show(resultado.media.ToString());
+                MessageBox.Show("Media: "+resultado.media.ToString());
                 llenarGrid(resultado.matrizResultados, X_1);
             }
         }
@@ -44,7 +44,7 @@ namespace PruebaAlgoritmosSimulacion
         public void llenarGrid(List<List<float>> lista, int X_1)
         {
             // Column names
-            MessageBox.Show(lista.Count.ToString());
+            
             string[] columnNames = { "1", "2", "3", "4", "5", "6" };
 
             // Clear existing columns and add new ones
@@ -104,17 +104,17 @@ namespace PruebaAlgoritmosSimulacion
         {
 
         }
-//hola
+        //hola
         private void label3_Click_1(object sender, EventArgs e)
         {
 
         }
-        public (int X_1, int a, int b,int c, int d) validaciones(string a, string b, string c,string d, string e)
+        public (int X_1, int a, int b, int c, int d) validaciones(string a, string b, string c, string d, string e)
         {
             if (string.IsNullOrEmpty(a) || string.IsNullOrEmpty(b) || string.IsNullOrEmpty(c) || string.IsNullOrEmpty(d) || string.IsNullOrEmpty(e))
             {
                 MessageBox.Show("Los números tienen que ser Mayor que cero, NO VACÍOS");
-                return (0,0,0,0,0);
+                return (0, 0, 0, 0, 0);
             }
             int X_1 = Convert.ToInt32(a);
             int a_1 = Convert.ToInt32(b);
@@ -122,15 +122,15 @@ namespace PruebaAlgoritmosSimulacion
             int c_1 = Convert.ToInt32(d);
             int d_1 = Convert.ToInt32(e);
             if (
-                X_1 <=0||a_1<=0|| b_1 <= 0 || c_1 <= 0|| d_1 <= 0 )
-     
+                X_1 <= 0 || a_1 <= 0 || b_1 <= 0 || c_1 <= 0 || d_1 <= 0)
+
             {
                 MessageBox.Show("Los números tienen que ser Mayor que cero, NO VACÍOS");
-                return (0,0,0,0,0);
+                return (0, 0, 0, 0, 0);
             }
-            
-           
-            return (X_1, a_1, b_1,c_1,d_1);
+
+
+            return (X_1, a_1, b_1, c_1, d_1);
         }
         public bool EsPrimo(int numero)
         {
@@ -150,6 +150,11 @@ namespace PruebaAlgoritmosSimulacion
         private void button2_Click(object sender, EventArgs e)
         {
             DescargaExcel(dataGridView1);
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
