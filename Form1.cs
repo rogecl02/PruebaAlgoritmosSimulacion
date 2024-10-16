@@ -128,6 +128,12 @@ namespace PruebaAlgoritmosSimulacion
                 MessageBox.Show("Los números tienen que ser Mayor que cero, NO VACÍOS");
                 return (0, 0, 0, 0, 0);
             }
+            if (a_1>= b_1 )
+
+            {
+                MessageBox.Show("Minimo no puede ser mayor a Maximo");
+                return (0, 0, 0, 0, 0);
+            }
 
 
             return (X_1, a_1, b_1, c_1, d_1);
